@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList'
+import TodoList from './components/TodoList';
 
 const todos = [
   {
@@ -48,11 +48,28 @@ class App extends React.Component {
 //     }
 // }
 
-addItem = (item) => {
-    this.setState = {
-        todos: []
-    }
+addItem = (itemName) => {
+  const item = {
+    task: itemName,
+    id: Date.now(),
+    completed: false
+  }
+  console.log(item)
+  const newTodo = [...this.state.todos, item]
+    this.setState({
+      todos: newTodo
+    })
 }
+
+// handleItemsCompleted = () => {
+//   const newTodo = this.state.todos.filter(item => {
+//     return (!item.completed);
+//   })
+
+//   this.setState({
+//     todos: newTodo
+//   })
+// }
 
   render() {
     return (
@@ -62,9 +79,9 @@ addItem = (item) => {
           <TodoList todos={this.state.todos} toggleItem={this.toggleItem} />  
         </div>
         <div> 
-          <TodoForm  addItem={this.addItem} />
+          <TodoForm addItem={this.addItem} /*handleItemsCompleted={this.handleItemsCompleted}*/ />
         </div>
-      </div>
+        </div>
     );
   }
 }
