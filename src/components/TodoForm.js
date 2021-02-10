@@ -23,17 +23,21 @@ class TodoForm extends React.Component {
         })
     }
 
-    // handleClick = () => {
-    //     this.handleItemsCompleted()
-    // }
+    handleClick = () => {
+        this.props.handleComplete();
+    }
 
     render(){
         return (
+            <>
             <form onSubmit={this.handleAddSubmit}>
                 <input onChange={this.handleChanges} value={this.state.newTodoName} type='text' name='item' placeholder='todo...' />
-                <button onSubmit={this.props.addItem} className='add-todo'>Add Todo</button>
-                 <button /*onClick={handleClick}*/className='clr-todo'>Clear Completed</button>
+                <button onSubmit={this.props.addItem} className='add-todo'>+</button>
              </form>
+             <div>
+              <button onClick={this.handleClick} className='clr-todo'>Clear Completed</button>
+              </div>
+         </>
         );
     }
 }

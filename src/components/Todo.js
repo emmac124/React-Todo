@@ -1,14 +1,15 @@
 import React from 'react';
+import './styles.css'
 
 const Todo = (props) => {
 
     const handleClick = () => {
-        props.toggleItem(props.item.id)
+        props.toggleItem(props.item.task)
     }
 
     return (
-        <div onClick={handleClick} className={`item${props.item.completed ? 'completed' : ''}`} >
-            <p>{props.item.task}</p>
+        <div>
+            <li onClick={handleClick} className={props.item.completed === true ? 'completed' : ''}>{props.item.task}</li>
         </div>
     );
 }

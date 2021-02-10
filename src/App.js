@@ -2,25 +2,12 @@ import React from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
-const todos = [
-  {
-    task: 'Learn setState()',
-    id: 1528817077286,
-    completed: false
-  },
-  {
-    task: 'Style my to do list',
-    id: 1528817084358,
-    completed: false
-  },  
-];
-
 class App extends React.Component {
   // you will need a place to store your state in this component.
   constructor() {
     super();
     this.state = {
-      todos: todos
+      todos: []
     }
   }
   // design `App` to be the parent component of your application.
@@ -42,11 +29,6 @@ class App extends React.Component {
     })
   }
 
-//   handleChanges = (e) => {
-//     this.setState = {
-//         todos: e.target.value
-//     }
-// }
 
 addItem = (itemName) => {
   const item = {
@@ -61,15 +43,16 @@ addItem = (itemName) => {
     })
 }
 
-// handleItemsCompleted = () => {
-//   const newTodo = this.state.todos.filter(item => {
-//     return (!item.completed);
-//   })
-
-//   this.setState({
-//     todos: newTodo
-//   })
-// }
+  handleComplete = () => {
+    //loop through my todos
+    //if a todos.complete = true, dont add it
+    //if = false, add it
+    this.setState({
+      todos: this.state.todos.filter(item => {
+        return (!item.completed);
+      })
+    })
+  }
 
   render() {
     return (
@@ -79,7 +62,7 @@ addItem = (itemName) => {
           <TodoList todos={this.state.todos} toggleItem={this.toggleItem} />  
         </div>
         <div> 
-          <TodoForm addItem={this.addItem} /*handleItemsCompleted={this.handleItemsCompleted}*/ />
+          <TodoForm addItem={this.addItem} handleComplete={this.handleComplete} />
         </div>
         </div>
     );
